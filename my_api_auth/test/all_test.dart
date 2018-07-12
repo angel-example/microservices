@@ -1,4 +1,4 @@
-import 'package:angel/angel.dart';
+import 'package:my_api_auth/my_api_auth.dart'  as my_api_auth;
 import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_test/angel_test.dart';
 import 'package:test/test.dart';
@@ -24,7 +24,7 @@ main() async {
 
   setUp(() async {
     var app = new Angel();
-    await app.configure(configureServer);
+    await app.configure(my_api_auth.configureServer);
 
     client = await connectTo(app);
   });

@@ -1,5 +1,5 @@
 /// Declare services here!
-library angel.services;
+library my_api_auth.services;
 
 import 'dart:async';
 import 'package:angel_framework/angel_framework.dart';

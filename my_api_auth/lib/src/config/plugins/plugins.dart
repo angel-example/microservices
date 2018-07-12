@@ -1,5 +1,5 @@
 /// Custom plugins go here.
-library angel.src.config.plugins;
+library my_api_auth.src.config.plugins;
 
 import 'dart:async';
 import 'package:angel_framework/angel_framework.dart';

@@ -1,5 +1,5 @@
 /// Your very own web application!
-library angel;
+library my_api_auth;
 
 import 'dart:async';
 import 'package:angel_framework/angel_framework.dart';
