@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'package:angel_client/angel_client.dart';
+import 'package:angel_client/base_angel_client.dart';
+import 'package:angel_http_exception/angel_http_exception.dart';
 import 'package:dart2_constant/convert.dart';
 
 /// A simple API for accessing the MyAPI microservice gateway.
 class MyApiGatewayClient {
-  final Angel app;
+  final BaseAngelClient app;
 
   MyApiGatewayClient(this.app);
 
@@ -33,6 +34,33 @@ class MyApiGatewayClient {
       throw new AngelHttpException.fromJson(response.body);
     } else {
       return json.decode(response.body);
+    }
+  }
+
+  /// Gets the list of permitted scopes for a [jwt] token.
+  Future<List> getScopesForToken(String jwt) async {
+    var response = await app.client.post(
+      '/api/auth/revive',
+      headers: {
+        'accept': 'application/json',
+        'authorization': 'Bearer $jwt',
+      },
+    );
+
+    if (response.statusCode != 200) {
+      throw new AngelHttpException.fromJson(response.body);
+    } else {
+      var data = json.decode(response.body);
+      return data['data']['scopes'] as List;
+    }
+  }
+
+  /// Ensures that a [jwt] permits the use of *all* the given [scopes], or throws a 403.
+  Future ensureTokenCanAccessScopes(String jwt, Iterable<String> scopes) async {
+    var permittedScopes = await getScopesForToken(jwt);
+
+    if (!scopes.every(permittedScopes.contains)) {
+      throw new AngelHttpException.forbidden();
     }
   }
 }

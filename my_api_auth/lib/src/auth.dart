@@ -58,7 +58,7 @@ Future configureServer(Angel app) async {
 
   // Mount a single route that allows clients to receive a JWT from the server.
   app.post(
-    '/auth',
+    '/auth/local',
     auth.authenticate(
       'local',
       new AngelAuthOptions(
@@ -71,4 +71,13 @@ Future configureServer(Angel app) async {
       ),
     ),
   );
+
+  // Mount one more route that can be used to revive a JWT.
+  //
+  // Note that this endpoint inherently also performs validation of JWT's,
+  // *AND* returns information about the currently authenticated client.
+  //
+  // This way, individual microservices can use this authentication microservice
+  // to ensure that clients have the necessary access to perform functions.
+  app.get('/api/auth/revive', auth.reviveJwt);
 }
