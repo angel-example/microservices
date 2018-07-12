@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Fibonacci-enabled client",
+    "client_id": "92e495c3-ca9e-448d-bdc5-08c36b70433b",
+    "hashed_client_secret":
+      "21f841bde65cc4ed058133b5ceec2e5470775fe7ab3d55a98c56d26ad407c41c",
+    "salt": "98674e67-a6c0-4049-8a56-e140d9895be8",
+    "scopes": ["fibonacci"],
+    "created_at": "2018-07-12T12:56:55.820457",
+    "updated_at": "2018-07-12T12:56:55.820457",
+    "id": "0"
+  }
+]

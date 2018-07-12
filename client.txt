@@ -1,0 +1,12 @@
+Tobes-MacBook-Air:my_api_auth thosakwe$ dart bin/register.dart
+Name of client: Fibonacci-enabled client
+Registering a new client with the following information:
+  * Name: Fibonacci-enabled client
+  * Client ID: 92e495c3-ca9e-448d-bdc5-08c36b70433b
+  * Client Secret: c5de8817-edc4-40ec-8d5b-9038a7763c93
+  * Scopes: [fibonacci]
+Really register this client (cannot be undone)? (y/N): y
+WARNING: Failed to reload contents of .db/clients.json.
+Successfully registed client Fibonacci-enabled client!
+
+Make sure to write down your client secret, as it CANNOT BE RECOVERED!!!
