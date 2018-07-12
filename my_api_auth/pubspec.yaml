@@ -12,6 +12,8 @@ dependencies:
   angel_serialize: ^2.0.0
   angel_validate: ^1.0.0 # Allows for validation of input data
   dart2_constant: ^1.0.0 # For backwards compatibility.
+  my_api:
+      path: ../my_api
   prompts: ^1.0.0 # Simple command-line prompt library.
 dev_dependencies:
   angel_serialize_generator: ^2.0.0

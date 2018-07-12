@@ -3,6 +3,7 @@ import 'package:angel_framework/angel_framework.dart';
 import 'package:angel_framework/hooks.dart' as hooks;
 import 'package:angel_validate/server.dart';
 import 'package:file/file.dart';
+import 'package:my_api/my_api.dart';
 import 'package:my_api_auth/models.dart';
 
 AngelConfigurer configureServer(Directory dbDirectory) {

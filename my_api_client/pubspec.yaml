@@ -1,0 +1,6 @@
+name: my_api_client
+description: Common code for all microservices that go through the authentication gateway.
+dependencies:
+  angel_client: ^1.0.0
+  my_api:
+    path: ../my_api

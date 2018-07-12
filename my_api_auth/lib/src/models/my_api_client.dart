@@ -23,9 +23,3 @@ abstract class _MyApiClient extends Model {
 
   List<String> get scopes;
 }
-
-abstract class MyApiScopes {
-  static const List<String> all = const <String>[performFibonacci];
-
-  static const String performFibonacci = 'fibonacci';
-}
