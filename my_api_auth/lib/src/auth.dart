@@ -41,8 +41,8 @@ Future configureServer(Angel app) async {
   // https://en.wikipedia.org/wiki/Basic_access_authentication
   //
   // If you'd rather stick to Basic authentication than JWT authentication,
-  // you can use `auth.authenticateAndContinue('local')` as a middleware in front
-  // of protected routes.
+  // you can use `auth.authenticate('local', new AngelAuthOptions(canRespondWithJson: false))`
+  // as a middleware in front of protected routes.
   auth.strategies.add(new LocalAuthStrategy(
     verifier,
     usernameField: 'client_id',
