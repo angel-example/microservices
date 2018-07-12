@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:isolate';
-import 'package:my_api_auth/src/pretty_logging.dart';
+import 'package:my_api/my_api.dart';
 import 'package:my_api_auth/my_api_auth.dart' as my_api_auth;
 import 'package:angel_framework/angel_framework.dart';
 import 'package:logging/logging.dart';

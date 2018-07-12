@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Angel Microservices</title>
+</head>
+
+<body>
+    <h1>Enter a Number</h1>
+    <p>Output: fib(sqrt(x)), where x is your number.</p>
+    <form id="form">
+        <input id="number" type="number" placeholder="Enter a number.">
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        document.querySelector('#form').onsubmit = function (e) {
+            e.preventDefault();
+            var text = document.querySelector('#number').value;
+
+            if (text) {
+                var n = parseInt(text);
+                var body = JSON.stringify({ n: n });
+                var xhr = new XMLHttpRequest();
+                xhr.responseType = 'json';
+                xhr.open('POST', '/api/compute');
+                xhr.setRequestHeader('accept', 'application/json');
+                xhr.setRequestHeader('content-type', 'application/json');
+
+                xhr.onerror = function (e) {
+                    console.error(e);
+                    alert('XHR error!');
+                };
+
+                xhr.onloadend = function () {
+                    if (xhr.status != 200) {
+                        alert('Error! Status: ' + xhr.status);
+                    } else {
+                        alert('Result: ' + xhr.response);
+                    }
+                };
+
+                xhr.send(body);
+            }
+        };
+    </script>
+</body>
+
+</html>

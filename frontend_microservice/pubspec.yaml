@@ -1,0 +1,9 @@
+name: frontend
+description: A microservice that renders a simple frontend.
+publish_to: none
+dependencies:
+  angel_configuration: ^1.2.0-rc.0
+  angel_framework: ^1.0.0
+  angel_static: ^1.0.0
+  my_api_client:
+    path: ../my_api_client
