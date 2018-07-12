@@ -39,6 +39,8 @@ Future configureServer(Angel app) async {
         return null;
       }
     }
+
+    return client;
   }
 
   // Tell our authenticator how to authenticate clients who are attempting
@@ -79,5 +81,5 @@ Future configureServer(Angel app) async {
   //
   // This way, individual microservices can use this authentication microservice
   // to ensure that clients have the necessary access to perform functions.
-  app.get('/api/auth/revive', auth.reviveJwt);
+  app.post('/api/auth/revive', auth.reviveJwt);
 }

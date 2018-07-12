@@ -24,11 +24,12 @@ void serverMain(int isolateId) {
   var fs = const LocalFileSystem();
 
   hierarchicalLoggingEnabled = true;
-  app.logger = new Logger('fibonacci')..onRecord.listen(prettyLog);
+  app.logger = new Logger('frontend')..onRecord.listen(prettyLog);
 
   app.configure(configuration(fs)).then((_) async {
     var client = new MyApiGatewayClient(new Rest(app.configuration['gateway']));
     String fibonacciEndpoint, sqrtEndpoint;
+    Map<String, String> headers;
 
     // A single endpoint that performs the computation.
     app.post('/api/compute', (RequestContext req) async {
@@ -42,17 +43,23 @@ void serverMain(int isolateId) {
 
         sqrtEndpoint ??=
             await client.getEndpoint(MyApiScopes.performSquareRoot);
+
+        headers = {
+          'accept': 'content-type/json',
+          'authorization': 'Bearer ${client.app.authToken}',
+        };
       }
 
+      await req.parse();
       var n = req.body['n'] as num;
       var sqrt = await client.app.client
-          .get('$sqrtEndpoint/$n')
+          .get('$sqrtEndpoint/$n', headers: headers)
           .then((r) => r.body)
           .then(json.decode) as num;
 
       var index = sqrt.toInt();
       var fib = await client.app.client
-          .get('$fibonacciEndpoint/$index')
+          .get('$fibonacciEndpoint/$index', headers: headers)
           .then((r) => r.body)
           .then(json.decode) as int;
       return fib;

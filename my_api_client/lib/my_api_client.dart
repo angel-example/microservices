@@ -9,14 +9,20 @@ class MyApiGatewayClient {
 
   MyApiGatewayClient(this.app);
 
-  Future authenticate(String clientId, String clientSecret) {
-    return app.authenticate(
-      type: 'local',
-      credentials: {
+  Future authenticate(String clientId, String clientSecret) async {
+    var response = await app.post(
+      '/auth/local',
+      headers: {
+        'accept': 'application/json',
+        'content-type': 'application/json',
+      },
+      body: json.encode({
         'client_id': clientId,
         'client_secret': clientSecret,
-      },
+      }),
     );
+
+    return app.authToken = json.decode(response.body);
   }
 
   /// Query the API gateway for the URL of another microservice.
@@ -40,7 +46,7 @@ class MyApiGatewayClient {
   /// Gets the list of permitted scopes for a [jwt] token.
   Future<List> getScopesForToken(String jwt) async {
     var response = await app.client.post(
-      '/api/auth/revive',
+      '${app.basePath}/api/auth/revive',
       headers: {
         'accept': 'application/json',
         'authorization': 'Bearer $jwt',

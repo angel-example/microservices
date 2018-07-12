@@ -14,7 +14,9 @@ abstract class MyApiClientSerializer {
         clientId: map['client_id'] as String,
         hashedClientSecret: map['hashed_client_secret'] as String,
         salt: map['salt'] as String,
-        scopes: map['scopes'] as List<String>,
+
+        // Note: I definitely modified this by hand.
+        scopes: (map['scopes'] as List)?.map((x) => x.toString())?.toList(),
         createdAt: map['created_at'] != null
             ? (map['created_at'] is DateTime
                 ? (map['created_at'] as DateTime)
