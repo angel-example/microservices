@@ -1,8 +1,9 @@
 /// Declare services here!
 library my_api_auth.services;
 
-import 'dart:async';
 import 'package:angel_framework/angel_framework.dart';
+import 'package:file/file.dart';
+import 'client.dart' as client;
 
 /// Configure our application to use *services*.
 /// Services must be wired to the app via `app.use`.
@@ -12,4 +13,10 @@ import 'package:angel_framework/angel_framework.dart';
 ///
 /// Read more here:
 /// https://github.com/angel-dart/angel/wiki/Service-Basics
-Future configureServer(Angel app) async {}
+AngelConfigurer configureServer(FileSystem fs) {
+  return (Angel app) async {
+    var dbDirectory = fs.directory('.db');
+    await dbDirectory.create(recursive: true);
+    await app.configure(client.configureServer(dbDirectory));
+  };
+}

@@ -1,6 +1,6 @@
 # my_api_auth
 This microservice is responsible for keeping track of registered clients,
-and delegating access via OAuth2: https://github.com/angel-dart/oauth2
+and delegating access via JWT: https://github.com/angel-dart/auth
 
 Because this is just an example project, no database is used, because not everyone
 will have the same software installed locally.

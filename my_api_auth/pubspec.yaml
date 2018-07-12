@@ -1,5 +1,5 @@
 name: my_api_auth
-description: An easily-extensible web server framework in Dart.
+description: An authentication microservice.
 publish_to: none # Ensure we don't accidentally publish our private code! ;)
 environment:
   sdk: '>=2.0.0-dev <3.0.0'
@@ -8,12 +8,15 @@ dependencies:
   angel_auth: ^1.1.0 # Supports stateless authentication via JWT
   angel_configuration: ^1.1.0 # Loads application configuration, along with support for .env files.
   angel_cors: ^1.0.0 # CORS support
+  angel_file_service: ^1.0.0
   angel_framework: ^1.1.0 # The core server library.
-  angel_oauth2: ^1.0.0 # Used for implementing an OAuth2 server.
+  angel_serialize: ^2.0.0
   angel_validate: ^1.0.0 # Allows for validation of input data
   dart2_constant: ^1.0.0 # For backwards compatibility.
   prompts: ^1.0.0 # Simple command-line prompt library.
 dev_dependencies:
+  angel_serialize_generator: ^2.0.0
   angel_test: ^1.1.0 # For testing
+  build_runner: ^0.9.0
   console: ">=2.0.0 <4.0.0" # For pretty-printing
   test: ^0.12.13 # Also for testing
