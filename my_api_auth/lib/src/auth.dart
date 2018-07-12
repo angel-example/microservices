@@ -6,7 +6,14 @@ import 'package:my_api_auth/models.dart';
 Future configureServer(Angel app) async {
   // Create an authenticator, which will be used to control access to server resources.
   var pepper = app.configuration['jwt_secret'] as String;
-  var auth = new AngelAuth<MyApiClient>(jwtKey: pepper, allowCookie: false);
+  var auth = new AngelAuth<MyApiClient>(
+    jwtKey: pepper,
+    allowCookie: false,
+    userKey: 'client',
+  );
+
+  // Mount a global middleware that decodes JWT's.
+  app.use(auth.decodeJwt);
 
   // A function used to associate a JWT token with a given client.
   auth.serializer = (client) => client.clientId;

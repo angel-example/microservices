@@ -21,7 +21,7 @@ void serverMain(int isolateId) {
   app.logger = new Logger('my_api_auth')..onRecord.listen(prettyLog);
 
   app.configure(my_api_auth.configureServer).then((_) async {
-    var server = await http.startServer('127.0.0.1', 3001);
+    var server = await http.startServer('127.0.0.1', 3000);
     var uri = Uri.parse('http://${server.address.address}:${server.port}');
     print('Auth service isolate #$isolateId listening at $uri');
   });
