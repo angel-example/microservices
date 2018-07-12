@@ -1,2 +1,2 @@
 # microservices
-Using Angel and Go together as microservices, with OAuth2.
+Using Angel to build microservices, with JWT authentication.
