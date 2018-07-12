@@ -9,7 +9,11 @@ Instead, `package:angel_file_service` is used as make-shift database that persis
 to a single JSON file.
 
 ## Registering a Client
-To register a new OAuth2 client, use `bin/register.dart`.
+To register a new client, use `bin/register.dart`.
+This will provide you with a client ID and client secret.
+
+The client secret is hashed immediately, and the plaintext version
+is **never** stored in the database, so be sure to save it!
 
 ## Running the Server
 It's simple: just call `ANGEL_ENV=production dart bin/server.dart`.
